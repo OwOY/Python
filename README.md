@@ -39,3 +39,29 @@ if __name__ == '__main__':
     print(T.post)
 ``` 
 >> print : 3
+### Decorator
+1. Ex: 
+```
+def test(func):
+    def wrapper(x):
+        func(x)
+    return wrapper
+
+@test
+def get(x):
+    print(x)
+get(5)
+
+```
+2. Ex:
+```
+def author_check(*users):
+    def get_author_check(func):
+        def decorated_view(self):
+            if 'IQC' in users:
+                return func(self)
+            else:
+                return ApiResponse.emitErrorOutput(E_CODE_PARAMETERS_BLANK, "權限不足", "")
+        return decorated_view 
+    return get_author_check
+```
