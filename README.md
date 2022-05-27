@@ -5,10 +5,31 @@
 ---- 
   
 ### 紀錄一些實用小技巧
+- 增加系統路徑(使程式可直接引用該路徑的程式)
+```
+import sys
+sys.path.append('..')
+```
+- 確認格式型態
+```
+a = ['2','5']
+if isinstance(data,list):
+    return True
+if isinstance(df, pd.DataFrame):
+    return True
+```
+
+- List-like String To List
+```
+test = ['test']
+type(test)  # str
+type(eval(test))  #list
+```
+
 - Getattr  
 getattr(object, name)  
->> object = 物件  
->> name = 函式名稱  
+ object = 物件  
+ name = 函式名稱  
 ```
 class test:
     def __init__(self):
@@ -25,7 +46,10 @@ if __name__ == '__main__':
 ```
 >> print : 5
 - Setattr
-setattr(object, name, value)  #object = 物件  #name = 函式名稱  #value = 值
+setattr(object, name, value)  
+object = 物件  
+name = 函式名稱  
+value = 值
 ```
 class test:
     def __init__(self):
