@@ -5,8 +5,10 @@
 ---- 
   
 ### 紀錄一些實用小技巧
-- Getattr
-getattr(object, name)   #object = 物件  #name = 函式名稱
+- Getattr  
+getattr(object, name)  
+>> object = 物件  
+>> name = 函式名稱  
 ```
 class test:
     def __init__(self):
@@ -64,4 +66,71 @@ def author_check(*users):
                 return ApiResponse.emitErrorOutput(E_CODE_PARAMETERS_BLANK, "權限不足", "")
         return decorated_view 
     return get_author_check
+```
+
+### Multiprocess
+- start 啟動
+``` 
+from multiprocessing import Process  
+def run5_post(x):  
+    run(x)
+if __name__ == '__main__':      
+    t1 = Process(target=run5_post, args=(1,))  
+    t2 = Process(target=run5_post, args=(2,))  
+    t1.start()  
+    t2.start()  
+```
+- join 阻塞(確保子進程全跑完才跑主線程)
+```
+import multiprocess as mp
+
+def run(x)
+    print(x)
+    sleep(x)
+
+if __name__ == '__main__':
+    task_list = []
+    i =5
+    while i > 0:
+        task = mp.Process(target=run, args(i,)
+        task.start()
+        task_list.append(task)
+        i -= 1
+    for task in task_list:
+        task.join()
+    print('done')
+```
+- queue 運用
+```
+import multiprocess as mp
+
+class test:
+    def __init__(self):
+        self.queue = mp.Queue()
+    
+    def log(self):
+        while not self.queue.empty():
+            self.queue.get()
+            # write log
+        
+    
+    def main(self):
+        task_list = []
+        i =5
+        while i > 0:
+            task = mp.Process(target=run, args(i,)
+            task.start()
+            task_list.append(task)
+            self.queue.put(i + '已進行')
+            i -= 1
+            
+        for task in task_list:
+            task.join()
+        self.log()
+
+if __name__ == '__main__':
+    print('schedule start')
+    test().main()
+    print('done')
+    
 ```
