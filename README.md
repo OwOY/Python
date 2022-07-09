@@ -10,14 +10,19 @@
 import sys
 sys.path.append('..')
 ```
-- 確認格式型態
+- 確認格式型態  
+data = ['2','5']
 ```
-a = ['2','5']
 if isinstance(data,list):
     return True
-if isinstance(df, pd.DataFrame):
-    return True
 ```
+>> True
+```
+if isinstance(data, pd.DataFrame):
+    return True
+return False
+```
+>> False
 
 - List-like String To List
 ```
@@ -157,4 +162,39 @@ if __name__ == '__main__':
     test().main()
     print('done')
     
+```
+### Threading
+>> dict&list 可以直接改變變數  
+>> int&str 需設立全域變數才可改變變數  
+```
+import threading
+
+def add(data):
+    global x
+    x = x + 5
+    data.append(x)
+    
+def test():
+    global x
+    x = 3
+    data = []
+    task = threading.Thread(target=add, args=(data,))
+    task.start()
+    print(x)    
+    print(data)
+
+if __name__ == '__main__':
+    test()
+```
+- 全局變量鎖 # 避免資料互相干擾
+```
+import threading
+
+lock = threading.Lock()
+def test(x):
+    global x
+    for i in range(5):
+        self.lock.acquire()
+        x += 1
+        self.lock.release()
 ```
