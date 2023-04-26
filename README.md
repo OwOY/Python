@@ -198,3 +198,10 @@ def test(x):
         x += 1
         self.lock.release()
 ```
+### Python Code Compile
+```
+#! /bin/bash
+python -OO -m compileall -b <project_name>
+# 若有需要移除 source code，可加入
+find <project_name> -name "*.py" -delete
+```
