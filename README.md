@@ -6,23 +6,23 @@
   
 ### 紀錄一些實用小技巧
 - 增加系統路徑(使程式可直接引用該路徑的程式)
-  ```
+  ```python
   import sys
   sys.path.append('..')
   ```
 - 確認格式型態  
 data = ['2','5']
-  ```
+  ```python
   print(isinstance(data,list))
   ```
   >> True
-  ```
+  ```python
   print(isinstance(data, pd.DataFrame))
   ```
   >> False
 
 - List-like String To List
-  ```
+  ```python
   test = ['test']
   type(test)  # str
   type(eval(test))  #list
@@ -32,7 +32,7 @@ data = ['2','5']
 getattr(object, name)  
  object = 物件  
    name = 函式名稱  
-  ```
+  ```python
   class test:
       def __init__(self):
           pass
@@ -52,7 +52,7 @@ setattr(object, name, value)
 object = 物件  
 name = 函式名稱  
 value = 值
-  ```
+  ```python
   class test:
       def __init__(self):
           pass
@@ -69,7 +69,7 @@ value = 值
   >> print : 3
 ### Decorator
 1. Ex: 
-  ```
+  ```python
   def test(func):
       def wrapper(x):
           func(x)
@@ -82,7 +82,7 @@ value = 值
 
   ```
 2. Ex:
-  ```
+  ```python
   def author_check(*users):
       def get_author_check(func):
           def decorated_view(self):
@@ -96,7 +96,7 @@ value = 值
 
 ### Multiprocess
 - start 啟動
-  ``` 
+  ``` python
   from multiprocessing import Process  
   def run5_post(x):  
       run(x)
@@ -107,7 +107,7 @@ value = 值
       t2.start()  
   ```
 - join 阻塞(確保子進程全跑完才跑主線程)
-  ```
+  ```python
   import multiprocess as mp
 
   def run(x)
@@ -127,7 +127,7 @@ value = 值
       print('done')
   ```
 - queue 運用
-  ```
+  ```python
   import multiprocess as mp
 
   class test:
@@ -160,10 +160,24 @@ value = 值
       print('done')
 
   ```
+  - 加入協程運用
+    ```python
+    from multiprocessing import Process
+    import asyncio 
+
+    async def run(x):
+        print(x)
+        await asyncio.sleep(x)
+
+    task = Process(target=asyncio.run, args=(run(1)))
+    task.start()
+
+    ```
+
 ### Threading
   >> dict&list 可以直接被迭代
   >> int&str 需設立全域變數才可被迭代
-  ```
+  ```python
   import threading
 
   def add(data):
@@ -184,7 +198,7 @@ value = 值
       test()
   ```
 - 全局變量鎖 # 避免資料互相干擾
-  ```
+  ```python
   import threading
 
   lock = threading.Lock()
@@ -196,7 +210,7 @@ value = 值
           self.lock.release()
   ```
 ### Python Code Compile
-```
+```shell
 #! /bin/bash
 python -OO -m compileall -b <project_name>
 # 若有需要移除 source code，可加入
